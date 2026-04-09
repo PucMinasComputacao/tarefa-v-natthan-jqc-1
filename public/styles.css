@@ -29,6 +29,11 @@ body {
     line-height: 1.6;
 }
 
+img {
+    max-width: 100%;
+    display: block;
+}
+
 /* HEADER */
 header {
     max-width: 1200px;
@@ -72,16 +77,17 @@ header img {
     box-shadow: 0 6px 18px rgba(188, 0, 45, 0.15);
     position: relative;
     z-index: 1;
+    margin: 0 auto;
 }
 
-/* LAYOUT */
+/* LAYOUT PRINCIPAL - FLEXBOX */
 .container {
     max-width: 1200px;
     margin: 24px auto;
+    padding: 0 20px;
     display: flex;
     gap: 24px;
     align-items: flex-start;
-    padding: 0 20px;
 }
 
 /* MENU */
@@ -94,6 +100,7 @@ header img {
     overflow: hidden;
     position: sticky;
     top: 20px;
+    flex-shrink: 0;
 }
 
 .menu h2 {
@@ -105,7 +112,7 @@ header img {
     letter-spacing: 1px;
 }
 
-/* PESQUISA */
+/* PESQUISA - FLEXBOX */
 .pesquisa {
     display: flex;
     padding: 14px;
@@ -145,14 +152,15 @@ header img {
     opacity: 0.95;
 }
 
-/* BOTÕES DO MENU */
+/* MENU - GRID */
 .menu ul {
     list-style: none;
     padding: 14px;
+    display: grid;
+    gap: 12px;
 }
 
 .menu li {
-    margin-bottom: 12px;
     padding: 12px 14px;
     background: linear-gradient(to right, #ffffff, #fff7f8);
     border: 1px solid rgba(188, 0, 45, 0.18);
@@ -170,21 +178,22 @@ header img {
     box-shadow: 0 8px 18px rgba(188, 0, 45, 0.18);
 }
 
-/* LINKS DO MENU */
 .menu li a {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
-/* CONTEÚDO */
+/* CONTEÚDO - GRID */
 main {
     flex: 1;
+    min-width: 0;
+    display: grid;
+    gap: 22px;
 }
 
 /* BANNER */
 .banner {
-    margin-bottom: 24px;
     background-color: var(--branco);
     border-radius: 24px;
     overflow: hidden;
@@ -196,7 +205,6 @@ main {
     width: 100%;
     height: 360px;
     object-fit: cover;
-    display: block;
 }
 
 .banner p {
@@ -214,7 +222,6 @@ main {
     border: 1px solid var(--borda);
     border-radius: 20px;
     overflow: hidden;
-    margin-bottom: 22px;
     box-shadow: var(--sombra);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -224,7 +231,6 @@ main {
     box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
 }
 
-/* TÍTULO DAS CAIXAS */
 .box h2 {
     background: linear-gradient(135deg, var(--vermelho), var(--vermelho-escuro));
     color: white;
@@ -232,7 +238,6 @@ main {
     font-size: 20px;
 }
 
-/* TEXTO */
 .box p {
     padding: 18px;
     line-height: 1.8;
@@ -258,7 +263,9 @@ footer p {
     font-weight: bold;
 }
 
-/* RESPONSIVO */
+/* =========================
+   TABLET
+   ========================= */
 @media (max-width: 900px) {
     .container {
         flex-direction: column;
@@ -269,35 +276,82 @@ footer p {
         position: static;
     }
 
+    .menu ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     header h1 {
         font-size: 34px;
     }
 
     .banner img {
-        height: 260px;
+        height: 280px;
     }
 }
 
+/* =========================
+   CELULAR
+   ========================= */
 @media (max-width: 600px) {
     header {
         margin: 16px;
         padding: 22px 16px;
     }
 
+    header h1 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    header img {
+        width: 72px;
+    }
+
     .container {
         margin: 16px auto;
         padding: 0 16px;
+        gap: 16px;
+    }
+
+    .menu ul {
+        grid-template-columns: 1fr;
+    }
+
+    .pesquisa {
+        padding: 12px;
+    }
+
+    .pesquisa input {
+        height: 38px;
+        font-size: 13px;
+    }
+
+    .pesquisa button {
+        width: 42px;
+        height: 38px;
+    }
+
+    .banner img {
+        height: 210px;
+    }
+
+    .banner p {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .box h2 {
+        font-size: 17px;
+    }
+
+    .box p {
+        padding: 14px;
+        font-size: 14px;
+        line-height: 1.7;
     }
 
     footer {
         margin: 0 16px 16px;
-    }
-
-    header h1 {
-        font-size: 28px;
-    }
-
-    .banner img {
-        height: 220px;
+        padding: 14px;
     }
 }
